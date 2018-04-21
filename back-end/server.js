@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('./db/mongoose');
 const {Event} = require('./models/event');
+const {User} = require('./models/user');
 
 const app = express();
 
@@ -26,6 +27,19 @@ app.post('/event', (req, res) => {
   }).catch((e) =>{
     res.status(400).send(e);
   });
+});
+
+app.post('/user', (req, res) => {
+  let user = new User({
+    username: req.body.username,
+    password: req.body.password
+  });
+  user.save().then((user) =>{
+    res.send(user);
+  }).catch((e) => {
+    res.status(400).send();
+  })
+
 });
 
 app.get('/event', (req, res) => {

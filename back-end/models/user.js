@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
-var UserSchema = new mongose.Schema({
+var UserSchema = new mongoose.Schema({
 
 	username: {
 		type: String,
 		required: true,
 		unique: true
-	}
-
+	},
 	password: {
 		type: String,
 		required: true
@@ -20,28 +19,10 @@ var UserSchema = new mongose.Schema({
 	},
 
 	points: {
-		type: number,
+		type: Number,
 		default: 0
 	}
 });
-
-UserSchema.methods.toJSON = function (){
-	var user = this;
-	var userObject = user.toObject();
-
-	return _.pick(userObject, ['_id', 'email', 'password', 'email', 'points']);
-};
-
-UserSchema.methods.generateAuthToken = function (){
-	var user = this;
-	var access = 'auth';
-	var token = jwt.sign({_id: user._id.toHexString(), acess}, 'abc123').toString();
-	user.tokens = user.tokens.concat([{access, token}]);
-
-	return user.save().then(() => {
-		return token;
-	});
-};
 
 var User = mongoose.model('User', UserSchema);
 
