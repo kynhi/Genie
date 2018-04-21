@@ -2,6 +2,7 @@ require('./config/config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('./db/mongoose');
+const {Event} = require('./models/event');
 
 const app = express();
 
@@ -14,6 +15,19 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('we own');
+});
+
+app.post('/event', (req, res) => {
+  let event = new Event({
+    name: req.body.name
+  });
+
+  event.save().then((doc) => {
+    res.send(doc);
+  }).catch((e) =>{
+    res.status(400).send(e);
+  });
+  
 });
 
 app.listen(port, ()=>{
