@@ -32,7 +32,8 @@ app.post('/event', (req, res) => {
 app.post('/user', (req, res) => {
   let user = new User({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    email: req.body.password
   });
   user.save().then((user) =>{
     res.send(user);
