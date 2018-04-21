@@ -21,14 +21,22 @@ app.post('/event', (req, res) => {
   let event = new Event({
     name: req.body.name
   });
-
   event.save().then((doc) => {
     res.send(doc);
   }).catch((e) =>{
     res.status(400).send(e);
   });
-  
 });
+
+app.get('/event', (req, res) => {
+  Event.find().then((events) => {
+    res.send({events});
+  }).catch((e) =>{
+    res.status(400).send();
+  });
+});
+
+
 
 app.listen(port, ()=>{
   console.log(`app is listening on port ${port}`);
