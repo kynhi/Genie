@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
+import NavBar from './Components/NavBar.js'
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux'
@@ -12,7 +13,7 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
+    <NavBar />
   </Provider>
   ,document.getElementById('root')
 );
