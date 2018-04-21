@@ -7,14 +7,13 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux'
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
-import EventsDisplay from './EventsDisplay.js'
+import Login from './login.js'
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-
+    <Login />
   </Provider>
   ,document.getElementById('root')
 );
