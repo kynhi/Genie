@@ -40,7 +40,22 @@ app.post('/user', (req, res) => {
   }).catch((e) => {
     res.status(400).send();
   })
+});
 
+app.post('/event/:eid/:uid', (req, res) => {
+  var eventid = req.params.eid;
+  var userid = req.params.uid;
+
+  User.findById(userid).then((_user) =>{
+    Event.findById(eventid).then((_event) => {
+      _event.users.push(_user);
+      _event.save().then((__event) => {
+        res.send(__event);
+      });
+    });
+  }).catch((e) => {
+    res.status(400).send();
+  });
 });
 
 app.get('/event', (req, res) => {
@@ -51,7 +66,13 @@ app.get('/event', (req, res) => {
   });
 });
 
-
+app.get('/user', (req, res) => {
+  User.find().then((users) => {
+    res.send({users});
+  }).catch((e) => {
+    res.status(400).send();
+  });
+});
 
 app.listen(port, ()=>{
   console.log(`app is listening on port ${port}`);
