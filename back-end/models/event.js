@@ -16,6 +16,12 @@ const EventSchema = new mongoose.Schema({
   location: {
     type: String
   },
+  latitude: {
+    type: Number
+  },
+  longitude: {
+    type: Number
+  },
   users: []
 });
 

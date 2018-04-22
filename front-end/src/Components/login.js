@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router';
 import { bindActionCreators } from 'redux';
 import { signIn } from '../actions/userActions';
 import "./login.css";
+import history from '../history';
 
 
 class Login extends Component {
@@ -15,6 +18,12 @@ class Login extends Component {
       email: "",
       password: ""
     };
+  }
+
+  componentDidUpdate(){
+      if(this.props.user.loggedIn){
+          history.push('/');
+      }
   }
 
   validateForm() {
@@ -38,8 +47,13 @@ class Login extends Component {
     const style = {
       border: '1px solid black'
     }
+
+    if(this.props.user.isLoggedIn){
+      return <Redirect to="/" />
+    }
     return (
       <div className="Login bg-light">
+        <h2> <center> <strong> Genie login  </strong></center> </h2>
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -64,6 +78,21 @@ class Login extends Component {
             type="submit">
             Login
           </Button>
+        </form>
+        <br />
+        <form className="form-inline my-2 my-lg-0">
+          <Link to="/Register"><Button
+            block
+            bsSize = "medium"
+            type="Register">
+            Register
+          </Button></Link>
+          <Link to="/"><Button
+            block
+            bsSize = "medium"
+            type="Cancel">
+            Cancel
+          </Button></Link>
         </form>
       </div>
     );

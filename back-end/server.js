@@ -39,7 +39,10 @@ app.get('/', (req, res) => {
 
 app.post('/event', (req, res) => {
   let event = new Event({
-    name: req.body.name
+    name: req.body.name,
+    details: req.body.details,
+    longitude: req.body.longitude,
+    latitude: req.body.latitude
   });
   event.save().then((doc) => {
     res.send(doc);
@@ -66,6 +69,7 @@ app.post('/event/:eid/:uid', (req, res) => {
 
 app.post('/user', (req, res) => {
   let user = new User({
+    username: req.body.username,
     email: req.body.email,
     password: req.body.password
   });

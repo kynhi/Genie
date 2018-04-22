@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
-// import '../Styles/RegisterStyle.css';
-// import $ from 'jquery';
-export default class RegisterComponent extends Component{
+import {Link} from 'react-router-dom';
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import '../Styles/RegisterStyle.css';
+import {register} from '../actions/RegisterUser';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import history from '../history';
+
+class RegisterComponent extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -11,7 +17,13 @@ export default class RegisterComponent extends Component{
       password: '',
       confirm: ''
     };
+		this.registerUser = this.registerUser.bind(this);
+  }
 
+  componentDidUpdate(){
+    if(this.props.user.loggedIn){
+        history.push('/');
+    }
   }
 
   updateSearchName(event) {
@@ -34,14 +46,21 @@ export default class RegisterComponent extends Component{
     this.setState({confirm: event.target.value});
   }
 
+	registerUser(event){
+		event.preventDefault();
+		if(this.state.password != this.state.confirm){
+			return console.log('Passwords are not the same');
+		}
+		this.props.register(this.state);
+	}
+
   render(){
     return(
-      <div className="container">
+      <div className="container RegisterComponent">
 			<div className="row main">
 				<div className="main-login main-center">
 				<h5>Become a Genie today</h5>
-					<form className="" method="post" action="#">
-
+					<form onSubmit={this.registerUser}>
 						<div className="form-group">
 							<label htmlFor="name" className="cols-sm-2 control-label">Your Name</label>
 							<div className="cols-sm-10">
@@ -52,7 +71,6 @@ export default class RegisterComponent extends Component{
 								</div>
 							</div>
 						</div>
-
 						<div className="form-group">
 							<label htmlFor="email" className="cols-sm-2 control-label">Your Email</label>
 							<div className="cols-sm-10">
@@ -97,10 +115,13 @@ export default class RegisterComponent extends Component{
 							</div>
 						</div>
 
-						<div className="form-group ">
-							<a href="http://www.google.com" target="_blank" type="button" id="button" className="btn btn-primary btn-lg btn-block login-button">Register</a>
+						<div className="form-group">
+							<button target="_blank" id="button" className="btn btn-primary btn-lg btn-block login-button">Register</button>
 						</div>
 
+            <div className="form-group">
+              <Link to="/login"><Button>Cancel</Button></Link>
+            </div>
 					</form>
 				</div>
 			</div>
@@ -108,3 +129,13 @@ export default class RegisterComponent extends Component{
     )
   }
 }
+
+function mapStateToProps({user}){
+	return {user};
+}
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({register}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);

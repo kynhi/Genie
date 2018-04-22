@@ -11,7 +11,14 @@ class HeaderComponent extends Component {
 
     renderSignIn(){
         if(this.props.user.loggedIn){
-            return <h1> signed in </h1>
+            return(
+              <div>
+                  <span><strong>{this.props.user.userInfo.username}</strong></span>
+                  <form className="form-inline my-2 my-lg-0">
+                    <Link to="/"><button className="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button></Link>
+                  </form>
+              </div>
+            )
         }else{
             return(
             <form className="form-inline my-2 my-lg-0">
@@ -33,12 +40,11 @@ class HeaderComponent extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
+
                 <li className="nav-item active">
-                  <a className="nav-link" href="/">Events <span className="sr-only">(current)</span></a>
+                  <Link className="navbar-brand" to="/eventform">Add Events <span className="sr-only">(current)</span></Link>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/">Link</a>
-                </li>
+
               </ul>
               {button}
             </div>
@@ -47,6 +53,10 @@ class HeaderComponent extends Component {
       );
     }
 }
+
+// <li className="nav-item">
+// <a className="nav-link" href="/eventform">Link</a>
+// </li>
 
 function mapStateToProps({user}){
     return {user};
