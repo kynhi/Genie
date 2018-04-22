@@ -3,6 +3,7 @@ import '../Styles/RegisterStyle.css';
 import {register} from '../actions/RegisterUser';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import history from '../history';
 
 class RegisterComponent extends Component{
   constructor(props){
@@ -15,6 +16,12 @@ class RegisterComponent extends Component{
       confirm: ''
     };
 		this.registerUser = this.registerUser.bind(this);
+  }
+
+  componentDidUpdate(){
+    if(this.props.user.loggedIn){
+        history.push('/');
+    }
   }
 
   updateSearchName(event) {
