@@ -46,10 +46,6 @@ class HeaderComponent extends Component {
                   <Link className="navbar-brand" to="/eventform">Add Events <span className="sr-only">(current)</span></Link>
                 </li>
 
-                <li className="nav-item">
-                  <a className="nav-link" href="/eventform">Link</a>
-                </li>
-                
               </ul>
               {button}
             </div>
@@ -58,6 +54,10 @@ class HeaderComponent extends Component {
       );
     }
 }
+
+// <li className="nav-item">
+// <a className="nav-link" href="/eventform">Link</a>
+// </li>
 
 function mapStateToProps({user}){
     return {user};

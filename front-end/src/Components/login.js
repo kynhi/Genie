@@ -53,6 +53,7 @@ class Login extends Component {
     }
     return (
       <div className="Login bg-light">
+        <h2> <center> <strong> Genie login  </strong></center> </h2>
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -78,6 +79,7 @@ class Login extends Component {
             Login
           </Button>
         </form>
+        <br />
         <form className="form-inline my-2 my-lg-0">
           <Link to="/Register"><Button
             block
