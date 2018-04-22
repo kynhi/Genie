@@ -9,6 +9,7 @@ class App extends Component {
       <div>
         <HeaderComponent />
         <EventsDisplay />
+
       </div>
     );
   }
