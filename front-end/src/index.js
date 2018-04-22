@@ -10,6 +10,7 @@ import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
 import Login from './Components/Login';
 import TestComponent from './Components/TestComponent';
+import RegisterComponent from './Components/RegisterComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -22,6 +23,7 @@ ReactDOM.render(
           <Route exact path="/" component={App} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/test" component={TestComponent} />
+          <Route exact path="/register" component={RegisterComponent} />
         </Switch>
       </div>
     </BrowserRouter>

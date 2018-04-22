@@ -1,4 +1,4 @@
-import {LOGGED_IN, LOGGED_OUT} from './actionTypes';
+import {REGISTER_USER} from './actionTypes';
 import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:8080';

@@ -11,9 +11,6 @@ class App extends Component {
       <div>
         <HeaderComponent />
         <EventsDisplay />
-        <Event_Detail/>
-        <Event_New/>
-        <RegisterComponent/>
       </div>
     );
   }
