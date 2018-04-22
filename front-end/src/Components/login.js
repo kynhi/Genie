@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./login.css";
 
@@ -27,8 +28,11 @@ export default class Login extends Component {
   }
 
   render() {
+    const style = {
+      border: '1px solid black'
+    }
     return (
-      <div className="Login">
+      <div className="Login bg-light">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>

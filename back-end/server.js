@@ -50,7 +50,7 @@ app.post('/user', (req, res) => {
   let user = new User({
     username: req.body.username,
     password: req.body.password,
-    email: req.body.password
+    email: req.body.email
   });
   user.save().then((user) =>{
     res.send(user);
@@ -58,6 +58,23 @@ app.post('/user', (req, res) => {
     res.status(400).send();
   });
 });
+
+app.post('/signin', (req, res) => {
+  User.findOne({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.password
+  }).then((user) =>{
+    if(!user){
+      return res.status(404).send({
+        error: "User not found"
+      });
+    }
+    res.send(user);
+  }).catch((e) =>{
+    res.status(404).send(e);
+  });
+})
 
 app.get('/event', (req, res) => {
   Event.find().then((events) => {
