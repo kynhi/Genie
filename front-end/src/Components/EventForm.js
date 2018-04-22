@@ -5,6 +5,7 @@ import '../Styles/RegisterStyle.css';
 import {register} from '../actions/RegisterUser';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import axios from 'axios';
 import history from '../history';
 
 class EventForm extends Component{
@@ -19,12 +20,6 @@ class EventForm extends Component{
 		this.registerUser = this.registerUser.bind(this);
   }
 
-  componentDidUpdate(){
-    if(this.props.user.loggedIn){
-        history.push('/');
-    }
-  }
-
   updateSearchName(event) {
     this.setState({name: event.target.value});
   }
@@ -34,16 +29,20 @@ class EventForm extends Component{
   }
 
 	updateLongitude(event) {
-		this.setState({description: event.target.value});
+		this.setState({longitude: event.target.value});
 	}
 
 	updateLatitude(event) {
-		this.setState({description: event.target.value});
+		this.setState({latitude: event.target.value});
 	}
 
 	registerUser(event){
 		event.preventDefault();
-		// this.props.register(this.state);
+		const url = 'http://localhost:8080/event';
+		axios.post(url, this.state).then((response) => {
+			console.log(response.data);
+		})
+		history.push('/');
 	}
 
   render(){
@@ -54,11 +53,11 @@ class EventForm extends Component{
 				<h5>Create an Event</h5>
 					<form onSubmit={this.registerUser}>
 						<div className="form-group">
-							<label htmlFor="name" className="cols-sm-2 control-label">Your Name</label>
+							<label htmlFor="name" className="cols-sm-2 control-label">Event Name</label>
 							<div className="cols-sm-10">
 								<div className="input-group">
 									<span className="input-group-addon"><i className="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" className="form-control" name="name" id="name" placeholder="Enter your Name"
+									<input type="text" className="form-control" name="name" id="name" placeholder="Enter event name"
                   value={this.state.name} onChange={this.updateSearchName.bind(this)}/>
 								</div>
 							</div>
@@ -69,7 +68,7 @@ class EventForm extends Component{
 							<div className="cols-sm-10">
 								<div className="input-group">
 									<span className="input-group-addon"><i className="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" className="form-control" name="description" id="description"  placeholder="Enter your description"
+									<input type="text" className="form-control" name="description" id="description"  placeholder="Enter event description"
                   value={this.state.description} onChange={this.updateSearchDescription.bind(this)}/>
 								</div>
 							</div>
@@ -81,7 +80,7 @@ class EventForm extends Component{
 								<div className="input-group">
 									<span className="input-group-addon"><i className="fa fa-envelope fa" aria-hidden="true"></i></span>
 									<input type="text" className="form-control" name="description" id="description"  placeholder="Enter longitude of event"
-                  value={this.state.longitude} />
+                  value={this.state.longitude} onChange={this.updateLongitude.bind(this)}/>
 								</div>
 							</div>
 						</div>
@@ -92,7 +91,7 @@ class EventForm extends Component{
 								<div className="input-group">
 									<span className="input-group-addon"><i className="fa fa-envelope fa" aria-hidden="true"></i></span>
 									<input type="text" className="form-control" name="description" id="description"  placeholder="Enter latitude of event"
-                  value={this.state.latitude} />
+                  value={this.state.latitude} onChange={this.updateLatitude.bind(this)}/>
 								</div>
 							</div>
 						</div>
@@ -103,7 +102,7 @@ class EventForm extends Component{
 						</div>
 
             <div className="form-group">
-              <Link to="/login"><Button>Cancel</Button></Link>
+              <Link to="/"><Button>Cancel</Button></Link>
             </div>
 					</form>
 				</div>
