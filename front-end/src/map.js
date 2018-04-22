@@ -1,5 +1,8 @@
 import React from "react"
-
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {selectEvent} from './actions/eventAction';
 const fetch = require("isomorphic-fetch");
 const { compose, withProps, withHandlers } = require("recompose");
 const {
@@ -22,13 +25,13 @@ const MapWithMarkerInfoWindow= compose(
   withGoogleMap
 )(props =>
   <GoogleMap
-    defaultZoom={10}
-    defaultCenter={{ lat: 25.0391667, lng: 121.525 }}
+    defaultZoom={8}
+    defaultCenter={{ lat: 32.7766642, lng: -96.7969879}}
   >
       {props.markers.map(marker => (
          <Marker
            position={{ lat: marker.latitude, lng: marker.longitude }}
-           title = {marker.owner_url}
+           title = {marker.name}
            onClick={props.onMarkerClick.bind(this,marker)}
          />
          // console.log(marker.owner_url);
@@ -47,7 +50,7 @@ const MapWithMarkerInfoWindow= compose(
 );
 
 
-export default class MyFancyComponent extends React.PureComponent {
+class MyFancyComponent extends React.PureComponent {
 
   componentWillMount() {
     this.state = {
@@ -60,23 +63,26 @@ export default class MyFancyComponent extends React.PureComponent {
     }
 
   componentDidMount() {
-    const url = [
-      // Length issue
-      `https://gist.githubusercontent.com`,
-      `/farrrr/dfda7dd7fccfec5474d3`,
-      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
-    ].join("")
+    // const url = [
+    //   // Length issue
+    //   `https://gist.githubusercontent.com`,
+    //   `/farrrr/dfda7dd7fccfec5474d3`,
+    //   `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
+    // ].join("")
+    const url = 'http://localhost:8080/event';
+
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        this.setState({ markers: data.photos });
+        this.setState({ markers: data.events });
       });
   }
 
   // execute when click on marker. the parameter is the json object
   handleMarkerClick = (marker) => {
         console.log(`Current clicked markers length: ${marker.photo_id}`)
-        window.location.href = marker.owner_url;
+        // window.location.href = marker.owner_url;
+        //call eventAction
   }
   render() {
     return (
@@ -85,3 +91,9 @@ export default class MyFancyComponent extends React.PureComponent {
     )
   }
 }
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({selectEvent}, dispatch);
+}
+
+export default MyFancyComponent;

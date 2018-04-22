@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { LOGGED_IN, LOGGED_OUT, REGISTER_USER } from '../actions/actionTypes.js';
 import history from '../history';
 
@@ -11,7 +10,6 @@ export default function(state = initalState, action) {
   switch(action.type){
       case LOGGED_IN:
         if(action.error){
-          console.log('bad');
           return state;
         }
         return {

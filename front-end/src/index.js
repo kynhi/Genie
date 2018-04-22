@@ -11,6 +11,7 @@ import reducers from './reducers';
 import Login from './Components/Login';
 import TestComponent from './Components/TestComponent';
 import RegisterComponent from './Components/RegisterComponent';
+import EventDetail from './Components/Event-Detail/event-detail';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import history from './history';
 
@@ -25,6 +26,7 @@ ReactDOM.render(
           <Route exact path="/login" component={Login} />
           <Route exact path="/test" component={TestComponent} />
           <Route exact path="/register" component={RegisterComponent} />
+          <Route exact path="/event" component={EventDetail} />
         </Switch>
       </div>
     </Router>
