@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { LOGGED_IN, LOGGED_OUT, REGISTER_USER } from '../actions/actionTypes.js';
+import history from '../history';
 
 const initalState = {
   loggedIn: false,
@@ -15,7 +16,7 @@ export default function(state = initalState, action) {
         }
         return {
           loggedIn: true,
-          userInfo: action.payload
+          userInfo: action.payload.data
         };
       case LOGGED_OUT:
         return {
@@ -28,7 +29,7 @@ export default function(state = initalState, action) {
         }
         return {
           loggedIn: true,
-          userInfo: action.payload
+          userInfo: action.payload.data
         };
       default:
         return state;

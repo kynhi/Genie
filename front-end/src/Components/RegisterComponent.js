@@ -47,7 +47,7 @@ class RegisterComponent extends Component{
 
   render(){
     return(
-      <div className="container">
+      <div className="container RegisterComponent">
 			<div className="row main">
 				<div className="main-login main-center">
 				<h5>Become a Genie today</h5>

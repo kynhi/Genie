@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router';
 import { bindActionCreators } from 'redux';
 import { signIn } from '../actions/userActions';
 import "./login.css";
+import history from '../history';
 
 
 class Login extends Component {
@@ -16,6 +18,12 @@ class Login extends Component {
       password: ""
     };
   }
+
+  componentDidUpdate(){
+      if(this.props.user.loggedIn){
+          history.push('/');
+      }
+    }
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -37,6 +45,10 @@ class Login extends Component {
   render() {
     const style = {
       border: '1px solid black'
+    }
+
+    if(this.props.user.isLoggedIn){
+      return <Redirect to="/" />
     }
     return (
       <div className="Login bg-light">

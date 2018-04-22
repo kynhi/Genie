@@ -1,5 +1,6 @@
 import {LOGGED_IN, LOGGED_OUT} from './actionTypes';
 import axios from 'axios';
+import history from '../history';
 
 const ROOT_URL = 'http://localhost:8080';
 

@@ -5,19 +5,20 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux'
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Router} from 'react-router-dom';
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
 import Login from './Components/Login';
 import TestComponent from './Components/TestComponent';
 import RegisterComponent from './Components/RegisterComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import history from './history';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <BrowserRouter>
+    <Router history={history}>
       <div>
         <Switch>
           <Route exact path="/" component={App} />
@@ -26,7 +27,7 @@ ReactDOM.render(
           <Route exact path="/register" component={RegisterComponent} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   </Provider>
   ,document.getElementById('root')
 );

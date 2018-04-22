@@ -11,7 +11,15 @@ class HeaderComponent extends Component {
 
     renderSignIn(){
         if(this.props.user.loggedIn){
-            return <h1> signed in </h1>
+            console.log(this.props.user);
+            return(
+              <div>
+                  <span><strong>{this.props.user.userInfo.username}</strong></span>
+                  <form className="form-inline my-2 my-lg-0">
+                    <Link to="/"><button className="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button></Link>
+                  </form>
+              </div>
+            )
         }else{
             return(
             <form className="form-inline my-2 my-lg-0">
