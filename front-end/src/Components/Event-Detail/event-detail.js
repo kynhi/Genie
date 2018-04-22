@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import "./event-detail.css";
 import "./event.js";
 
@@ -10,11 +11,30 @@ const iconStyles = {color: '#999', fontSize: '1em'};
 
 export default class Event_Detail extends React.Component
 {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      event_name: "",
+      event_image: "",
+      event_description: "",
+      num_attending: ""
+    };
+  }
   render(){
     return(
       <div className="Event-Detail">
-        <h2 > EVENT NAME </h2>
-        <img src = "../image/750806.jpg" className = "Event-Image" alt = "Event Image" />
+        <h2 > EVENT NAME  </h2> {/* event->name */}
+        <img src={ require('./750806.jpg') } className = "Event-Image" alt = "Event Image" /> {/* event->image */}
+        <div class="Event-Description">
+          <span> <strong> Event Discription: </strong></span>
+          <span> This is an Earth X Event </span>  {/* event->description*/}
+        </div>
+        <div class="Num-Attending">
+        <span> <strong> People Attending: </strong></span>
+        <span> 999 </span>  {/* event->num_attending*/}
+        </div>
+
       </div>
     )
   }
