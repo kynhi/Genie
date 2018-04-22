@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { signIn } from '../actions/userActions';
 import "./login.css";
 
-export default class Login extends Component {
+
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -24,11 +29,17 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log(this.state);
+    console.log(this.props.user);
+    this.props.signIn(this.state);
   }
 
   render() {
+    const style = {
+      border: '1px solid black'
+    }
     return (
-      <div className="Login">
+      <div className="Login bg-light">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -50,9 +61,7 @@ export default class Login extends Component {
           <Button
             block
             bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
+            type="submit">
             Login
           </Button>
         </form>
@@ -60,3 +69,13 @@ export default class Login extends Component {
     );
   }
 }
+
+function mapStateToProps({user}){
+  return {user};
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({signIn}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

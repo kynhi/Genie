@@ -3,11 +3,11 @@ import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:8080';
 
-export function signIn(user){
-  const url = `${ROOT_URL}/signIn`;
+export function register(user){
+  const url = `${ROOT_URL}/user`;
   const request = axios.post(url,user);
   return {
-    type: LOGGED_IN,
+    type: REGISTER_USER,
     payload: request
   }
 }
