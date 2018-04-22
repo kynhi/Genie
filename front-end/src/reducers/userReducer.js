@@ -1,12 +1,23 @@
 import axios from 'axios';
-import { LOGGED_IN, LOGGED_OUT } from './actionTypes.js';
+import { LOGGED_IN, LOGGED_OUT } from '../actions/actionTypes.js';
 
-export default function(state = null, action) => {
+const initalState = {
+  loggedIn: false,
+  userInfo: {}
+}
+
+export default function(state = initalState, action) {
   switch(action.type){
       case LOGGED_IN:
-        return action.payload;
+        return {
+          loggedIn: true,
+          userInfo: action.payload
+        };
       case LOGGED_OUT:
-        return null;
+        return {
+          loggedIn: false,
+          userInfo: {}
+        };
       default:
         return state;
   }

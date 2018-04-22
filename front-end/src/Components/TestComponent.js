@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
+import HeaderComponent from './HeaderComponent';
 
 export default class TestComponent extends Component {
   render(){
-    return <h1> Hello </h1>;
+    return(
+      <div>
+        <HeaderComponent/>
+        <h1> HELLO </h1>
+      </div>
+    )
   }
 }
