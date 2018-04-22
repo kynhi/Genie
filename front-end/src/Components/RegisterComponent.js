@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-
+// import '../Styles/RegisterStyle.css';
+// import $ from 'jquery';
 export default class RegisterComponent extends Component{
   constructor(props){
     super(props);
