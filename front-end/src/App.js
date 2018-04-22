@@ -13,7 +13,7 @@ class App extends Component {
         <HeaderComponent />
         <EventsDisplay />
         <Event_Detail/>
-
+        <RegisterComponent/>
       </div>
     );
   }
