@@ -8,7 +8,7 @@ import {createStore, applyMiddleware} from 'redux'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
-import Login from './Components/Login'
+import Login from './Components/Login';
 import TestComponent from './Components/TestComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
