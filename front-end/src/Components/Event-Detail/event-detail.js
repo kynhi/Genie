@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import "./event-detail.css";
 import "./event.js";
+import history from '../../history';
 import HeaderComponent from '../HeaderComponent';
 
 // import FontIcon from 'material-ui/FontIcon';
@@ -21,7 +23,21 @@ class Event_Detail extends React.Component
       event_description: "Recyling is awesome!",
       num_attending: 10
     };
+    this.onButtonClick = this.onButtonClick.bind(this);
   }
+
+  onButtonClick(){
+    console.log(this.props.currentEvent._id);
+    console.log('userID: ',this.props.user.userInfo._id);
+    const url = `http://localhost:8080/event/${this.props.currentEvent._id}/${this.props.user.userInfo._id}`;
+    if(this.props.user.isLoggedIn){
+      axios.post(url).then((response) => {
+        console.log(response.data);
+        history.push('/event');
+      })
+    }
+  }
+
   render(){
     return(
       <div classNameName="Event-Detail vcenter">
@@ -34,16 +50,17 @@ class Event_Detail extends React.Component
         </div>
         <div className="Num-Attending">
         <span> <strong> People Attending: </strong></span>
-        
+        <span> {this.props.currentEvent.users.length} </span>
         </div>
+        <button type="btn" onClick={this.onButtonClick}>Join event </button>
 
       </div>
     )
   }
 }
 
-function mapStateToProps({currentEvent}){
-  return {currentEvent};
+function mapStateToProps({user, currentEvent}){
+  return {user, currentEvent};
 }
 
 export default connect(mapStateToProps)(Event_Detail);

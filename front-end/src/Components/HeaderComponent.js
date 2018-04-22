@@ -11,7 +11,6 @@ class HeaderComponent extends Component {
 
     renderSignIn(){
         if(this.props.user.loggedIn){
-            console.log(this.props.user);
             return(
               <div>
                   <span><strong>{this.props.user.userInfo.username}</strong></span>
