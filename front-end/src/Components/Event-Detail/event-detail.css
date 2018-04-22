@@ -1,0 +1,10 @@
+@media all and (min-width: 480px) {
+  .event-detail {
+    padding: 60px 0;
+  }
+
+  .event-detail form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
