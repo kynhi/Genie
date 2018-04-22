@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {selectEvent} from './actions/eventAction';
+import history from './history';
 const fetch = require("isomorphic-fetch");
 const { compose, withProps, withHandlers } = require("recompose");
 const {
@@ -80,9 +81,13 @@ class MyFancyComponent extends React.PureComponent {
 
   // execute when click on marker. the parameter is the json object
   handleMarkerClick = (marker) => {
-        console.log(`Current clicked markers length: ${marker.photo_id}`)
+        console.log(`Current clicked markers length: ${marker.photo_id}`);
+        // console.log(marker);
         // window.location.href = marker.owner_url;
         //call eventAction
+        this.props.selectEvent(marker);
+        console.log(this.props.currentEvent);
+        history.push('/event');
   }
   render() {
     return (
@@ -92,8 +97,12 @@ class MyFancyComponent extends React.PureComponent {
   }
 }
 
+function mapStateToProps({currentEvent}){
+  return {currentEvent};
+}
+
 function mapDispatchToProps(dispatch){
   return bindActionCreators({selectEvent}, dispatch);
 }
 
-export default MyFancyComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(MyFancyComponent);

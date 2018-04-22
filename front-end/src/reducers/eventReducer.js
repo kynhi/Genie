@@ -7,10 +7,7 @@ const initalState = {
 export default function(state = initalState, action){
   switch(action.type){
     case SELECT_EVENT:
-      if(action.error){
-        return state;
-      }
-      return action.payload.data;
+      return action.payload;
     default:
       return state;
   }
