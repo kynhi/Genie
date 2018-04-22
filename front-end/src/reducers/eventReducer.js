@@ -1,7 +1,11 @@
 import {SELECT_EVENT} from '../actions/actionTypes';
 
 const initalState = {
-  event: {}
+  event: {
+    name: "name",
+    detail: "details",
+    users: []
+  }
 }
 
 export default function(state = initalState, action){

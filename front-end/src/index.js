@@ -9,6 +9,7 @@ import {BrowserRouter, Route, Switch, Router} from 'react-router-dom';
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
 import Login from './Components/Login';
+import EventForm from './Components/EventForm';
 import TestComponent from './Components/TestComponent';
 import RegisterComponent from './Components/RegisterComponent';
 import EventDetail from './Components/Event-Detail/event-detail';
@@ -27,6 +28,7 @@ ReactDOM.render(
           <Route exact path="/test" component={TestComponent} />
           <Route exact path="/register" component={RegisterComponent} />
           <Route exact path="/event" component={EventDetail} />
+          <Route exact path="/eventform" component={EventForm} />
         </Switch>
       </div>
     </Router>

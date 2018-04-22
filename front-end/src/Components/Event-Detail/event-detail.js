@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import "./event-detail.css";
 import "./event.js";
+import HeaderComponent from '../HeaderComponent';
 
 // import FontIcon from 'material-ui/FontIcon';
 //import Dialog from 'material-ui/Dialog';
@@ -15,15 +16,16 @@ class Event_Detail extends React.Component
     super(props);
 
     this.state = {
-      event_name: "",
-      event_image: "",
-      event_description: "",
-      num_attending: ""
+      event_name: "Name",
+      event_image: "Details",
+      event_description: "Recyling is awesome!",
+      num_attending: 10
     };
   }
   render(){
     return(
-      <div classNameName="Event-Detail">
+      <div classNameName="Event-Detail vcenter">
+      <HeaderComponent/>
         <h2 > {this.props.currentEvent.name}  </h2> {/* event->name */}
         <img src={ require('./750806.jpg') } classNameName = "Event-Image" alt = "Event Image" /> {/* event->image */}
         <div className="Event-Description">
@@ -32,7 +34,7 @@ class Event_Detail extends React.Component
         </div>
         <div className="Num-Attending">
         <span> <strong> People Attending: </strong></span>
-        <span> {this.props.currentEvent.users.length} </span>  {/* event->num_attending*/}
+        
         </div>
 
       </div>

@@ -39,7 +39,10 @@ app.get('/', (req, res) => {
 
 app.post('/event', (req, res) => {
   let event = new Event({
-    name: req.body.name
+    name: req.body.name,
+    details: req.body.details,
+    longitude: req.body.longitude,
+    latitude: req.body.latitude
   });
   event.save().then((doc) => {
     res.send(doc);
