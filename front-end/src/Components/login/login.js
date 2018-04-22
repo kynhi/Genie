@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { signIn } from '../actions/userActions';
 import "./login.css";
 
-
-class Login extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -22,6 +17,7 @@ class Login extends Component {
   }
 
   handleChange = event => {
+    console.log(event.target.value);
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -29,17 +25,11 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
-    console.log(this.props.user);
-    this.props.signIn(this.state);
   }
 
   render() {
-    const style = {
-      border: '1px solid black'
-    }
     return (
-      <div className="Login bg-light">
+      <div className="Login">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -61,7 +51,9 @@ class Login extends Component {
           <Button
             block
             bsSize="large"
-            type="submit">
+            disabled={!this.validateForm()}
+            type="submit"
+          >
             Login
           </Button>
         </form>
@@ -69,13 +61,3 @@ class Login extends Component {
     );
   }
 }
-
-function mapStateToProps({user}){
-  return {user};
-}
-
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({signIn}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);

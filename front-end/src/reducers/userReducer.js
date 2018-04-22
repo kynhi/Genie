@@ -9,6 +9,10 @@ const initalState = {
 export default function(state = initalState, action) {
   switch(action.type){
       case LOGGED_IN:
+        if(action.error){
+          console.log('bad');
+          return state;
+        }
         return {
           loggedIn: true,
           userInfo: action.payload
