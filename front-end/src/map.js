@@ -76,7 +76,7 @@ export default class MyFancyComponent extends React.PureComponent {
   // execute when click on marker. the parameter is the json object
   handleMarkerClick = (marker) => {
         console.log(`Current clicked markers length: ${marker.photo_id}`)
-        window.location.href = 'http://www.google.com';
+        window.location.href = marker.owner_url;
   }
   render() {
     return (
