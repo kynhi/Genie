@@ -23,14 +23,14 @@ export default class Event_Detail extends React.Component
   }
   render(){
     return(
-      <div className="Event-Detail">
+      <div classNameName="Event-Detail">
         <h2 > EVENT NAME  </h2> {/* event->name */}
-        <img src={ require('./750806.jpg') } className = "Event-Image" alt = "Event Image" /> {/* event->image */}
-        <div class="Event-Description">
+        <img src={ require('./750806.jpg') } classNameName = "Event-Image" alt = "Event Image" /> {/* event->image */}
+        <div className="Event-Description">
           <span> <strong> Event Discription: </strong></span>
           <span> This is an Earth X Event </span>  {/* event->description*/}
         </div>
-        <div class="Num-Attending">
+        <div className="Num-Attending">
         <span> <strong> People Attending: </strong></span>
         <span> 999 </span>  {/* event->num_attending*/}
         </div>
