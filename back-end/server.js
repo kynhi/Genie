@@ -66,6 +66,7 @@ app.post('/event/:eid/:uid', (req, res) => {
 
 app.post('/user', (req, res) => {
   let user = new User({
+    username: req.body.username,
     email: req.body.email,
     password: req.body.password
   });
