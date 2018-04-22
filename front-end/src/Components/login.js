@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
@@ -76,6 +77,20 @@ class Login extends Component {
             type="submit">
             Login
           </Button>
+        </form>
+        <form className="form-inline my-2 my-lg-0">
+          <Link to="/Register"><Button
+            block
+            bsSize = "medium"
+            type="Register">
+            Register
+          </Button></Link>
+          <Link to="/"><Button
+            block
+            bsSize = "medium"
+            type="Cancel">
+            Cancel
+          </Button></Link>
         </form>
       </div>
     );

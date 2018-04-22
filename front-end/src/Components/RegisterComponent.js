@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import '../Styles/RegisterStyle.css';
 import {register} from '../actions/RegisterUser';
 import {connect} from 'react-redux';
@@ -117,6 +119,9 @@ class RegisterComponent extends Component{
 							<button target="_blank" id="button" className="btn btn-primary btn-lg btn-block login-button">Register</button>
 						</div>
 
+            <div className="form-group">
+              <Link to="/login"><Button>Cancel</Button></Link>
+            </div>
 					</form>
 				</div>
 			</div>
